@@ -1,0 +1,13 @@
+html,body{
+    height: 100vh !important;
+    width: 100vw !important;
+    overflow: hidden !important;
+}
+
+.nav-fixed-top{
+    background-color: #2399AE;
+    height: 75px;
+}
+.navbar-item img{
+   max-height: 4.75rem;
+}

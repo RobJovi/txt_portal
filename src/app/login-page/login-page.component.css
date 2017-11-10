@@ -1,0 +1,51 @@
+.main{
+    height: 100vh;
+    width: 100vw;
+    background: 
+    url('/assets/login-imgs/background.JPG');
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    overflow: hidden; 
+}
+.layer{
+    position: absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    height: 100%;
+    z-index: 10;
+    background: black;
+    opacity: .5;
+}
+
+.form-container{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    padding: 20px 100px 100px 100px;
+    width:650px;
+    height: 450px;
+    margin: auto;
+    z-index: 11;
+    border-radius: 2%;
+    background: #fff;
+}
+.form-container h1{
+    text-align: center;
+    margin: 0 0 50px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.form-container .button{
+    background-color: #2399AE;
+    text-align: center;
+    margin: 50px auto 15px auto;
+    display: flex;
+}
+
+.label{
+    width: 125px;
+}

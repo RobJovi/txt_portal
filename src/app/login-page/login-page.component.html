@@ -1,0 +1,45 @@
+<div class="main">
+  <div class="layer"></div>
+  <div class="form-container">
+    <h1>Login User</h1>
+    <div id="volunteer-form">
+      <form (ngSubmit)="onSubmit(data)" #loginForm="ngForm">
+        <div class="field is-horizontal">
+          <label class="label">Username: </label>
+          <div class="field-body">
+            <div class="field">
+              <p class="control is-expanded">
+                <input class="input" type="text" placeholder="User Name" 
+                  name="username" id="username" [(ngModel)]="data.username" required>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+            <label class="label">Password: </label>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input class="input" type="password" placeholder="User Name" 
+                    name="password" id="password" [(ngModel)]="data.password" required>
+                </p>
+              </div>
+            </div>
+          </div>
+  
+        <!-- [disabled]="!volunteerForm.valid || submit" -->
+        <button class="button is-primary" [ngClass]="{'is-loading': isLoading}"  [disabled]="!loginForm.valid || submit">
+          Login
+        </button>
+        <!-- <div class="notification is-primary" *ngIf='success'>
+          <button class="delete" (click)="exit()"></button>
+          Thank You. Your info has been submitted.
+        </div> -->
+        <div class="notification is-danger" *ngIf='failure'>
+          <button class="delete" (click)="exit()"></button>
+          Error! Read console for details
+        </div>
+  
+      </form>
+  </div>
+</div>
