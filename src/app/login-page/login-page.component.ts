@@ -11,8 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   data = {
-    username: "robb1772",
-    password: "wave101dun906"
+    username: "migy", 
+    password: "dogs1234"
   }
   isLoading = false;
   failure = false;

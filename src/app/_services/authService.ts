@@ -25,6 +25,16 @@ export class AuthenticationService {
                 }
             });
     }
+    message(payload) {
+        return this.http.post('http://localhost:3000/text/send', payload)
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let user = response.json();
+                if (user && user.data) {
+                    console.log(user.data);
+                }
+            });
+    }
     // logout a user 
     logout() {
         // remove user from local storage to log user out
