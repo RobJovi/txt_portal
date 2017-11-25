@@ -38,24 +38,36 @@ export class TextsComponent implements OnInit {
   
     this.exampleData = [
       {
-        id: 'basic1',
-        text: 'Basic 1'
+        id: 'migy',
+        text: 'Migy'
       },
       {
-        id: 'basic2',
-        disabled: true,
-        text: 'Basic 2'
+        id: 'jorge',
+        text: 'Jorge'
       },
       {
-        id: 'basic3',
-        text: 'Basic 3'
+        id: 'multiple3',
+        text: 'Multiple 3'
       },
       {
-        id: 'basic4',
-        text: 'Basic 4'
+        id: 'multiple4',
+        text: 'Multiple 4'
       }
     ];
 
+    this.value = [];
+
+    this.options = {
+      multiple: true,
+      theme: 'classic',
+      closeOnSelect: true
+    }
+
+    this.current = this.value.join(' | ');
+  }
+
+  changed(data: {value: string[]}) {
+    this.current = data.value.join(' | ');
   }
 
     // on send message
