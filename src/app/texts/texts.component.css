@@ -1,0 +1,67 @@
+#msg-list {
+    height: 100%;
+    width: 25%;
+    border-right: solid 1px #000000;
+    display: inline-block;
+    float: left;
+    position: absolute;
+    /* margin: 0 auto; */
+}
+
+#main {
+    
+}
+
+#num-input {
+    position: fixed;
+    background: #DCDCDC;
+    width: 100%;
+    height: 45px;
+}
+#num-input input {
+    height: 35px;
+    margin: 5px;
+}
+#msg-input {
+    position: fixed;
+    bottom: 0;
+    background: #DCDCDC;
+    width: 100%;
+    height: 45px;
+}
+#msg-input input {
+    height: 35px;
+    margin: 5px;
+}
+#msg-send {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#msg-send button {
+    height: 35px;
+    margin: 5px;
+}
+
+.new-msg {
+    background: #DCDCDC;
+    height: 75px;
+    padding: 10px;
+    border-bottom: solid 1px #000000;
+    margin: 0 auto;
+}
+
+.msg {
+    background: #DCDCDC;
+    height: 75px;
+    padding: 10px;
+    border-bottom: solid 1px #000000;
+}
+
+.user-pic {
+    display: inline-block;
+}
+
+.msg-content {
+    display: inline-block;
+}

@@ -4,7 +4,8 @@ import * as _ from "lodash";
 
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Location, PopStateEvent } from "@angular/common";
-import { SubscriberService } from "./_services/subscriberService"
+import { SubscriberService } from "./_services/subscriberService";
+import { AuthenticationService } from "./_services/authService";
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ export class AppComponent {
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
 
-  constructor(@Inject(DOCUMENT) private document: Document,private router: Router, private location: Location){
+  constructor(@Inject(DOCUMENT) private document: Document,private router: Router, private location: Location, private authService: AuthenticationService){
 
   }
 
@@ -93,6 +94,11 @@ export class AppComponent {
     this.failure = false;
     this.success = false;
     this.checking =true;
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 

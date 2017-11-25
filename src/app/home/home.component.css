@@ -1,0 +1,11 @@
+#main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 35px;
+}
+.is-grey {
+    background: #DCDCDC;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px;
+}

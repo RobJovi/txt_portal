@@ -11,3 +11,7 @@ html,body{
 .navbar-item img{
    max-height: 4.75rem;
 }
+
+nav a {
+    padding: 25px;
+}

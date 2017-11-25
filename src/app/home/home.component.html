@@ -1,56 +1,16 @@
-<p>
-  {{currentUser}} - logged in
-</p>
-
-<div class="big-ol-thing">
-  <img src="assets/app-imgs/iP6.png" width="350" height="650">
-  <div class="main">
-    <div class="layer"></div>
-    <div class="form-container">
-      <h1>Send Text</h1>
-      <div id="volunteer-form">
-        <form (ngSubmit)="onSubmit(data)" #loginForm="ngForm">
-          <div class="field is-horizontal">
-            <label class="label">Phone Number: </label>
-            <div class="field-body">
-              <div class="field">
-                <p class="control is-expanded">
-                  <input class="input" type="text" placeholder="+18888888888" 
-                    name="phone_number" id="phone_number" [(ngModel)]="data.phone_number" required>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="field is-horizontal">
-              <label class="label">Message: </label>
-              <div class="field-body">
-                <div class="field">
-                  <p class="control is-expanded">
-                    <input class="input" type="textarea" placeholder="Message" 
-                      name="message" id="message" [(ngModel)]="data.message" required>
-                  </p>
-                </div>
-              </div>
-          </div>
-    
-          <!-- [disabled]="!volunteerForm.valid || submit" -->
-          <button class="button is-primary" [ngClass]="{'is-loading': isLoading}"  [disabled]="!loginForm.valid || submit">
-            Send
-          </button>
-          <!-- <div class="notification is-primary" *ngIf='success'>
-            <button class="delete" (click)="exit()"></button>
-            Thank You. Your info has been submitted.
-          </div> -->
-          <div class="notification is-danger" *ngIf='failure'>
-            <button class="delete" (click)="exit()"></button>
-            Error! Read console for details
-          </div>
-    
-        </form>
+<div id="main">
+  <div class="columns is-multiline is-mobile">
+      <div class="column is-half is-grey">
+        <a [routerLink]="['/texts']"><h1>Texting app</h1></a>
+        <h3>TXT mass text app</h3>
       </div>
+    <div class="column is-grey">
+        <a [routerLink]="['/texts']"><h1>Texting app</h1></a>
+        <h3>TXT mass text app</h3>
     </div>
-  
+    <div class="column is-grey">
+        <a [routerLink]="['/texts']"><h1>Texting app</h1></a>
+        <h3>TXT mass text app</h3>
+    </div>
   </div>
 </div>
-
-

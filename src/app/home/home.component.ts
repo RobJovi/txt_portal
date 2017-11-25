@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   
   }
 
-  // on login
+  // on click send
   onSubmit(payload){
     console.log("sending text");
     this.isLoading = true;
@@ -51,6 +51,11 @@ export class HomeComponent implements OnInit {
   exit(){
     this.failure = false;
     this.reset();
+  }
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   reset(){

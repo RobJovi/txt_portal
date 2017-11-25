@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers, Response } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { JwtHelper } from 'angular2-jwt';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
@@ -14,7 +14,7 @@ export class AuthenticationService {
     constructor(private http: Http) { }
     // login a user
     login(payload) {
-        return this.http.post('http://localhost:3000/txtportal/login', payload)
+        return this.http.post('http://d9d9078c.ngrok.io/txtportal/login', payload)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -26,7 +26,7 @@ export class AuthenticationService {
             });
     }
     message(payload) {
-        return this.http.post('http://localhost:3000/text/send', payload)
+        return this.http.post('http://d9d9078c.ngrok.io/text/send', payload)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -49,7 +49,7 @@ export class AuthenticationService {
         }
         // decipher user on server and console log it
         // dev purposes only
-       this.http.post('http://localhost:3000/txtportal/verifyToken', payload)
+       this.http.post('http://d9d9078c.ngrok.io/txtportal/verifyToken', payload)
         .map(res => res.json())
         .subscribe( res => {
             if(res.error){

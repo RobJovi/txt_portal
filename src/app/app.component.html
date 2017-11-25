@@ -1,6 +1,6 @@
 <nav class="navbar nav-fixed-top">
   <div class="navbar-brand">
-    <a routerLink="/home" class="navbar-item">
+    <a [routerLink]="['/']" class="navbar-item">
       <img src="assets/app-imgs/logo-white.png" alt="TXT logo">
     </a>
 
@@ -20,6 +20,11 @@
 
     </div>
   </div>
+
+  <!-- This is for the possible nav bar of the portal -->
+  <!-- <a class="" [routerLink]="['/']">Home</a>
+  <a class="mdl-navigation__link" [routerLink]="['/texts']">Texts</a> -->
+  <a (click)="logout()" style="color:white;">Logout</a>
 </nav>
 
 
