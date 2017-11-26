@@ -14,7 +14,7 @@ export class AuthenticationService {
     constructor(private http: Http) { }
     // login a user
     login(payload) {
-        return this.http.post('http://d9d9078c.ngrok.io/txtportal/login', payload)
+        return this.http.post('http://localhost:3000/txtportal/login', payload)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -26,7 +26,7 @@ export class AuthenticationService {
             });
     }
     message(payload) {
-        return this.http.post('http://d9d9078c.ngrok.io/text/send', payload)
+        return this.http.post('http://localhost:3000/text/send', payload)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -35,7 +35,18 @@ export class AuthenticationService {
                 }
             });
     }
-    // logout a user 
+    contact(payload) {
+      // console.log(payload)
+        return this.http.post('http://localhost:3000/contact/save', payload)
+            .map((response: Response) => {
+                // login successful if there's a jwt token in the response
+                let user = response.json();
+                if (user && user.data) {
+                    console.log(user.data);
+                }
+            });
+    }
+    // logout a user
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
@@ -49,7 +60,7 @@ export class AuthenticationService {
         }
         // decipher user on server and console log it
         // dev purposes only
-       this.http.post('http://d9d9078c.ngrok.io/txtportal/verifyToken', payload)
+       this.http.post('http://localhost:3000/txtportal/verifyToken', payload)
         .map(res => res.json())
         .subscribe( res => {
             if(res.error){
@@ -66,7 +77,7 @@ export class AuthenticationService {
 
     isLoggedIn(){
         const token =  localStorage.getItem('currentUser');
-        
+
 
         if(token != null){
            return !this.jwtHelper.isTokenExpired(token)

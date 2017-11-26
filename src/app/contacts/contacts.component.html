@@ -1,0 +1,54 @@
+
+    <p>Contacts</p>
+    <div ng-controller="ContactController">
+        <form (ngSubmit)="onSubmit(data)">
+            <div style="padding:10px;">
+                <label>Name</label>
+                <input type="text" name="name" #first_name="ngModel" [(ngModel)]="data.first_name" /><br />
+            </div>
+            <div style="padding:10px;">
+                <label>Lastname</label>
+                <input type="text" name="lastname" #last_name="ngModel" [(ngModel)]="data.last_name" /><br />
+            </div>
+            <div style="padding:10px;">
+                <label>Email</label>
+                <input type="text" name="email" #email="ngModel" [(ngModel)]="data.email" /><br />
+            </div>
+            <div style="padding:10px;">
+                <label>Phone</label>
+                <input type="text" name="phone" #phone_number="ngModel" [(ngModel)]="data.phone_number" /><br />
+            </div>
+            <div style="padding:10px;">
+                <label>School</label>
+                <input type="text" name="school" #school="ngModel" [(ngModel)]="data.school" /><br />
+            </div>
+            <div>
+              <button class="button is-primary" [ngClass]="{'is-loading': isLoading}" submit>Submit</button>
+            </div>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>School</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="contact" ng-repeat="contact in contacts">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.lastname }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.phone }}</td>
+                    <td>{{ data.school }}</td>
+                    <td>
+                        <a href="#" ng-click="edit(contact.id)">edit</a> |
+                        <a href="#" ng-click="delete(contact.id)">delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

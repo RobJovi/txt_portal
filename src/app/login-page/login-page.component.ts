@@ -11,12 +11,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   data = {
-    username: "migy", 
-    password: "dogs1234"
+    username: "jorge",
+    password: "g00gle13"
   }
   isLoading = false;
   failure = false;
-  constructor( private router:Router, private authService: AuthenticationService, private _cookieService:CookieService ) { 
+  constructor( private router:Router, private authService: AuthenticationService, private _cookieService:CookieService ) {
 
   }
 
@@ -27,7 +27,7 @@ export class LoginPageComponent implements OnInit {
     }else{
         console.log("not logged in")
     }
-  
+
   }
 
   // on login
