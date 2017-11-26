@@ -21,6 +21,7 @@ export class TextsComponent implements OnInit {
 
   public exampleData: Array<Select2OptionData>;
   public options: Select2Options;
+  
   txter;
 
   isLoading = false;
@@ -45,7 +46,7 @@ export class TextsComponent implements OnInit {
         for (let i in data) {
           var fullName = data[i].first_name + ' ' + data[i].last_name;
           let txterList = {
-            id: data[i],
+            id: data[i]._id,
             text: fullName,
             additional: {
               image: data[i].local_img_url,
@@ -57,6 +58,8 @@ export class TextsComponent implements OnInit {
           this.exampleData = recipient;
       }
     );
+
+    
     this.options = {
       multiple: true,
       placeholder: 'To...',
@@ -72,8 +75,9 @@ export class TextsComponent implements OnInit {
     }
 
     let image = '<span class="userImage"><img src="' + state.additional.image + '" width="50" height="50"></span>';
+    
 
-    return jQuery('<span>' + image + ' ' + state.text + ' - ' + state.additional.number + '</span>');
+    return jQuery('<span>' + image + ' ' + state.text + ' - ' + state.additional.number + '</span>' );
   }
 
   // function for selection template
@@ -82,9 +86,13 @@ export class TextsComponent implements OnInit {
       return state.text;
     }
 
-    return jQuery('<span [(ngModel)]="data.phone_number">' + state.text + '</span>');
-  }
+    let value: string[] = state.additional.number;
 
+    return jQuery('<span name="phone_number" [(ngModel)]="data.phone_number" value="' + value + '">' + state.text + '</span>');
+    
+  }
+  
+  
 
     // on send message
     onSubmit(payload){
@@ -95,7 +103,6 @@ export class TextsComponent implements OnInit {
           data => {
               this.isLoading = false;
               this.router.navigate(['/texts']);
-              console.log('banana');
           },
           error => {
               this.failure = true;
@@ -106,7 +113,6 @@ export class TextsComponent implements OnInit {
 
   exit(){
     this.failure = false;
-    this.reset();
   }
 
   logout(){
@@ -114,11 +120,5 @@ export class TextsComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  reset(){
-    this.data = {
-      username: "",
-      password: ""
-    }
-  }
 
 }
