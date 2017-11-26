@@ -1,9 +1,7 @@
-export class TXTer {
-    constructor(
-        public _id: string,
-        public first_name: string,
-        public last_name: string,
-        public phone_number: string,
-        public local_img_url: string
-        ){}
+export interface TXTer {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    local_img_url: string;
+    phone_number: string;
 }

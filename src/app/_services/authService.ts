@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import { JwtHelper } from 'angular2-jwt';
 import { Select2OptionData } from 'ng2-select2';
-// import { TXTer } from '../model/txter';
+import { TXTer } from '../model/txter';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -43,7 +43,7 @@ export class AuthenticationService {
     }
 
     // grab TXTer from mongo collection
-    getTemplateList() : Observable<any> {
+    getTemplateList() : Observable<TXTer[]> {
         var recipient = [];
         return this.http.get('http://6e74655b.ngrok.io/text/getTxter')
         // ...and calling .json() on the response to return data

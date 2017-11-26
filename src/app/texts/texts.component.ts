@@ -25,12 +25,7 @@ export class TextsComponent implements OnInit {
 
   isLoading = false;
   failure = false;
-  constructor( private router:Router, private authService: AuthenticationService, 
-    public _id: string,
-    public first_name: string,
-    public last_name: string,
-    public phone_number: string,
-    public local_img_url: string ) { 
+  constructor( private router:Router, private authService: AuthenticationService ) { 
 
   }
 
@@ -49,23 +44,19 @@ export class TextsComponent implements OnInit {
         var recipient = [];
         for (let i in data) {
           var fullName = data[i].first_name + ' ' + data[i].last_name;
-          // var pic = data[i].local_img_url;
           let txterList = {
             id: data[i],
             text: fullName,
             additional: {
-              image: '/assets/app-imgs/' + data[i].first_name + '.png',
+              image: data[i].local_img_url,
               number: data[i].phone_number,
             }
           }
           recipient.push(txterList);
-          console.log(recipient);
           } 
           this.exampleData = recipient;
       }
     );
-      
-    console.log(this.authService.getTemplateList());
     this.options = {
       multiple: true,
       placeholder: 'To...',
@@ -91,7 +82,7 @@ export class TextsComponent implements OnInit {
       return state.text;
     }
 
-    return jQuery('<span>' + state.text + '</span>');
+    return jQuery('<span [(ngModel)]="data.phone_number">' + state.text + '</span>');
   }
 
 
