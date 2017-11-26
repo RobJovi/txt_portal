@@ -18,13 +18,15 @@ import { JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { TextsComponent } from './texts/texts.component';
 import { Select2Module } from 'ng2-select2';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     HomeComponent,
-    TextsComponent
+    TextsComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,

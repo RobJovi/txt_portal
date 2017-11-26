@@ -22,6 +22,12 @@
     height: 35px;
     margin: 5px;
 }
+select2 {
+    margin: 5px;
+}
+.select2-container {
+    margin: 5px;
+}
 #msg-input {
     position: fixed;
     bottom: 0;
@@ -30,6 +36,7 @@
     height: 45px;
 }
 #msg-input input {
+    width: 500px;
     height: 35px;
     margin: 5px;
 }

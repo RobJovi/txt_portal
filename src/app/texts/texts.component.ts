@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthGuard } from '../_services/auth-guard';
 import { AuthenticationService } from "../_services/authService";
+import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
-import { Select2OptionData } from 'ng2-select2';
+import { Select2TemplateFunction, Select2OptionData } from 'ng2-select2';
+import { TXTer } from '../model/txter';
 
 @Component({
   selector: 'app-texts',
@@ -19,14 +21,20 @@ export class TextsComponent implements OnInit {
 
   public exampleData: Array<Select2OptionData>;
   public options: Select2Options;
-  public value: string[];
-  public current: string;
+  txter;
 
   isLoading = false;
   failure = false;
-  constructor( private router:Router, private authService: AuthenticationService ) { 
+  constructor( private router:Router, private authService: AuthenticationService, 
+    public _id: string,
+    public first_name: string,
+    public last_name: string,
+    public phone_number: string,
+    public local_img_url: string ) { 
 
   }
+
+  private model = new Array<TXTer[]>();
 
   ngOnInit() {
     if(this.authService.isLoggedIn()){
@@ -35,40 +43,57 @@ export class TextsComponent implements OnInit {
     }else{
         console.log("not logged in")
     }
-  
-    this.exampleData = [
-      {
-        id: 'migy',
-        text: 'Migy'
-      },
-      {
-        id: 'jorge',
-        text: 'Jorge'
-      },
-      {
-        id: 'multiple3',
-        text: 'Multiple 3'
-      },
-      {
-        id: 'multiple4',
-        text: 'Multiple 4'
+
+    this.authService.getTemplateList().subscribe(
+      data => { 
+        var recipient = [];
+        for (let i in data) {
+          var fullName = data[i].first_name + ' ' + data[i].last_name;
+          // var pic = data[i].local_img_url;
+          let txterList = {
+            id: data[i],
+            text: fullName,
+            additional: {
+              image: '/assets/app-imgs/' + data[i].first_name + '.png',
+              number: data[i].phone_number,
+            }
+          }
+          recipient.push(txterList);
+          console.log(recipient);
+          } 
+          this.exampleData = recipient;
       }
-    ];
-
-    this.value = [];
-
+    );
+      
+    console.log(this.authService.getTemplateList());
     this.options = {
       multiple: true,
-      theme: 'classic',
-      closeOnSelect: true
+      placeholder: 'To...',
+      templateResult: this.templateResult,
+      templateSelection: this.templateSelection
+    }
+  }
+
+  // function for result template
+  public templateResult: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
+    if (!state.id) {
+      return state.text;
     }
 
-    this.current = this.value.join(' | ');
+    let image = '<span class="userImage"><img src="' + state.additional.image + '" width="50" height="50"></span>';
+
+    return jQuery('<span>' + image + ' ' + state.text + ' - ' + state.additional.number + '</span>');
   }
 
-  changed(data: {value: string[]}) {
-    this.current = data.value.join(' | ');
+  // function for selection template
+  public templateSelection: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
+    if (!state.id) {
+      return state.text;
+    }
+
+    return jQuery('<span>' + state.text + '</span>');
   }
+
 
     // on send message
     onSubmit(payload){
@@ -79,6 +104,7 @@ export class TextsComponent implements OnInit {
           data => {
               this.isLoading = false;
               this.router.navigate(['/texts']);
+              console.log('banana');
           },
           error => {
               this.failure = true;
