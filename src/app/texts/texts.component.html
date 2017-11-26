@@ -48,7 +48,9 @@
 <div id="main">
   <form (ngSubmit)="onSubmit(data)">
     <div id="num-input">
-      <select2 name="phone_number" [data]="exampleData" [width]="500" [options]="options" [(ngModel)]="data.phone_number" [value]="value" ngDefaultControl></select2>
+      <select2 name="phone_number" [data]="exampleData" [width]="500" [options]="options" [(ngModel)]="data.phone_number" [value]="value" ngDefaultControl>
+          <input type="text" name="phone_number" id="phone_number" [(ngModel)]="data.phone_number" value="{state.additional.number}" required/>
+      </select2>
       <!-- <input type="text" name="phone_number" id="phone_number" [(ngModel)]="data.phone_number" value="{state.additional.number}" required/> -->
       <br/><br/>
 

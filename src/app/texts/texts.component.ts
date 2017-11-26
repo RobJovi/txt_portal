@@ -86,9 +86,11 @@ export class TextsComponent implements OnInit {
       return state.text;
     }
 
+
     let value: string[] = state.additional.number;
 
     return jQuery('<span name="phone_number" [(ngModel)]="data.phone_number" value="' + value + '">' + state.text + '</span>');
+    
     
   }
   
