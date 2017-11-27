@@ -19,6 +19,7 @@
     height: 45px;
 }
 #num-input input {
+    width: 500px;
     height: 35px;
     margin: 5px;
 }

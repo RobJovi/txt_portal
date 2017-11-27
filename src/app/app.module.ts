@@ -18,6 +18,7 @@ import { JWT_OPTIONS } from '@auth0/angular-jwt';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { TextsComponent } from './texts/texts.component';
 import { Select2Module } from 'ng2-select2';
+import {SelectModule} from 'ng-select';
 import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     Angular2FontawesomeModule,
     FormsModule,
     HttpModule,
-    Select2Module
+    Select2Module,
+    SelectModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy}, 

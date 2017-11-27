@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthGuard } from '../_services/auth-guard';
-import { AuthenticationService } from "../_services/authService";
+import { AuthenticationService } from '../_services/authService';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { Select2TemplateFunction, Select2OptionData } from 'ng2-select2';
@@ -15,37 +15,37 @@ import { TXTer } from '../model/txter';
 export class TextsComponent implements OnInit {
 
   data = {
-    username: "migy", 
-    password: "dogs1234"
-  }
+    username: 'migy',
+    password: 'dogs1234'
+  };
 
   public exampleData: Array<Select2OptionData>;
   public options: Select2Options;
-  
+  private _selectedFields: Array<string> = [];
   txter;
 
   isLoading = false;
   failure = false;
-  constructor( private router:Router, private authService: AuthenticationService ) { 
+  constructor( private router: Router, private authService: AuthenticationService ) {
 
   }
 
   private model = new Array<TXTer[]>();
 
   ngOnInit() {
-    if(this.authService.isLoggedIn()){
-      console.log("logged in")
+    if (this.authService.isLoggedIn()) {
+      console.log('logged in');
       this.router.navigate(['/texts']);
-    }else{
-        console.log("not logged in")
+    } else {
+        console.log('not logged in');
     }
 
     this.authService.getTemplateList().subscribe(
-      data => { 
-        var recipient = [];
+      data => {
+        const recipient = [];
         for (let i in data) {
           var fullName = data[i].first_name + ' ' + data[i].last_name;
-          let txterList = {
+          const txterList = {
             id: data[i]._id,
             text: fullName,
             additional: {
@@ -54,18 +54,17 @@ export class TextsComponent implements OnInit {
             }
           }
           recipient.push(txterList);
-          } 
+          }
           this.exampleData = recipient;
       }
     );
 
-    
     this.options = {
       multiple: true,
       placeholder: 'To...',
       templateResult: this.templateResult,
       templateSelection: this.templateSelection
-    }
+    };
   }
 
   // function for result template
@@ -74,8 +73,8 @@ export class TextsComponent implements OnInit {
       return state.text;
     }
 
-    let image = '<span class="userImage"><img src="' + state.additional.image + '" width="50" height="50"></span>';
-    
+    const image = '<span class="userImage"><img src="' + state.additional.image + '" width="50" height="50"></span>';
+
 
     return jQuery('<span>' + image + ' ' + state.text + ' - ' + state.additional.number + '</span>' );
   }
@@ -83,22 +82,21 @@ export class TextsComponent implements OnInit {
   // function for selection template
   public templateSelection: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
     if (!state.id) {
-      return state.text;
+      return state.additional.number;
     }
 
 
-    let value: string[] = state.additional.number;
+    const value: string[] = state.additional.number;
 
-    return jQuery('<span name="phone_number" [(ngModel)]="data.phone_number" value="' + value + '">' + state.text + '</span>');
-    
-    
+    return jQuery('<span name="phone_number" id="phone_number" [(ngModel)]="data.phone_number" value="state.additional.number"><b>' 
+    + state.text + '</b></span>');
   }
-  
-  
+
 
     // on send message
-    onSubmit(payload){
-      console.log("sending text");
+    onSubmit(payload) {
+      const array = [];
+      console.log('sending text');
       this.isLoading = true;
       this.authService.message(payload)
       .subscribe(
@@ -113,11 +111,11 @@ export class TextsComponent implements OnInit {
           });
     }
 
-  exit(){
+  exit() {
     this.failure = false;
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
