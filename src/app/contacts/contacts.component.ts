@@ -24,7 +24,13 @@ export class ContactsComponent implements OnInit {
   {}
 
   ngOnInit()
-  {}
+  {
+    this.authService.getContacts().subscribe(
+      data => {
+        console.log(data);
+      }
+    )
+  }
 
   //send new Contact
   onSubmit(payload){

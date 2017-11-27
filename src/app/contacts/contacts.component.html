@@ -26,7 +26,7 @@
               <button class="button is-primary" [ngClass]="{'is-loading': isLoading}" submit>Submit</button>
             </div>
         </form>
-        <table>
+        <table class="contacts">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -38,11 +38,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngIf="contact" ng-repeat="contact in contacts">
-                    <td>{{ data.name }}</td>
-                    <td>{{ data.lastname }}</td>
+                <tr ng-repeat="contact in contacts">
+                    <td>{{ data.first_name }}</td>
+                    <td>{{ data.last_name }}</td>
                     <td>{{ data.email }}</td>
-                    <td>{{ data.phone }}</td>
+                    <td>{{ data.phone_number }}</td>
                     <td>{{ data.school }}</td>
                     <td>
                         <a href="#" ng-click="edit(contact.id)">edit</a> |
