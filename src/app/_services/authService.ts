@@ -18,7 +18,7 @@ export class AuthenticationService {
     constructor(private http: Http) { }
     // login a user
     login(payload) {
-        return this.http.post('http://2efa8177.ngrok.io/txtportal/login', payload)
+        return this.http.post('http://7010fea8.ngrok.io/txtportal/login', payload)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 const user = response.json();
@@ -32,7 +32,7 @@ export class AuthenticationService {
 
     // send text message
     message(payload) {
-        return this.http.post('http://2efa8177.ngrok.io/text/send', payload)
+        return this.http.post('http://7010fea8.ngrok.io/text/send', payload)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 const user = response.json();
@@ -45,7 +45,7 @@ export class AuthenticationService {
     // grab TXTer from mongo collection
     getTemplateList(): Observable<TXTer[]> {
         const recipient = [];
-        return this.http.get('http://2efa8177.ngrok.io/text/getTxter')
+        return this.http.get('http://7010fea8.ngrok.io/text/getTxter')
         // ...and calling .json() on the response to return data
         .map((res: Response) => res.json())
         //...errors if any
@@ -66,7 +66,7 @@ export class AuthenticationService {
         };
         // decipher user on server and console log it
         // dev purposes only
-       this.http.post('http://2efa8177.ngrok.io/txtportal/verifyToken', payload)
+       this.http.post('http://7010fea8.ngrok.io/txtportal/verifyToken', payload)
         .map(res => res.json())
         .subscribe( res => {
             if (res.error) {

@@ -8,8 +8,12 @@
     /* margin: 0 auto; */
 }
 
-#main {
-    
+#actualForm {
+    background: #DCDCDC;
+    border: 1px solid;
+    border-radius: 4px;
+    height: 100px;
+    width: 250px;
 }
 
 #num-input {

@@ -22,6 +22,7 @@ export class TextsComponent implements OnInit {
   public exampleData: Array<Select2OptionData>;
   public options: Select2Options;
   private _selectedFields: Array<string> = [];
+  public numArray = [];
   txter;
 
   isLoading = false;
@@ -43,8 +44,8 @@ export class TextsComponent implements OnInit {
     this.authService.getTemplateList().subscribe(
       data => {
         const recipient = [];
-        for (let i in data) {
-          var fullName = data[i].first_name + ' ' + data[i].last_name;
+        for (let i = 0; i < data.length; i++) {
+          const fullName = data[i].first_name + ' ' + data[i].last_name;
           const txterList = {
             id: data[i]._id,
             text: fullName,
@@ -52,9 +53,9 @@ export class TextsComponent implements OnInit {
               image: data[i].local_img_url,
               number: data[i].phone_number,
             }
-          }
+          };
           recipient.push(txterList);
-          }
+        }
           this.exampleData = recipient;
       }
     );
@@ -86,29 +87,36 @@ export class TextsComponent implements OnInit {
     }
 
 
-    const value: string[] = state.additional.number;
+    const value = state.additional.number;
+    console.log(state.additional.number);
+    this.numArray.push(value);
+    // const valueArray = [value].concat();
+    console.log(this.numArray);
 
-    return jQuery('<span name="phone_number" id="phone_number" [(ngModel)]="data.phone_number" value="state.additional.number"><b>' 
-    + state.text + '</b></span>');
+    return jQuery('<span name="contact" id="contact"><b>' + state.text + '</b></span>');
   }
 
 
     // on send message
     onSubmit(payload) {
-      const array = [];
-      console.log('sending text');
-      this.isLoading = true;
-      this.authService.message(payload)
-      .subscribe(
-          data => {
-              this.isLoading = false;
-              this.router.navigate(['/texts']);
-          },
-          error => {
-              this.failure = true;
-              this.isLoading = false;
-              console.log(error);
-          });
+      const elem = document.getElementById('contactSelect');
+      const el = $('#phone_number').val(elem.outerText);
+      const numberArray = [el];
+      console.log(numberArray);
+      // console.log('sending text');
+      // this.isLoading = true;
+      // // this.authService.message(this.array && elemTwo)
+      // this.authService.message(payload)
+      // .subscribe(
+      //     data => {
+      //         this.isLoading = false;
+      //         this.router.navigate(['/texts']);
+      //     },
+      //     error => {
+      //         this.failure = true;
+      //         this.isLoading = false;
+      //         console.log(error);
+      //     });
     }
 
   exit() {
