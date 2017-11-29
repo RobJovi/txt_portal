@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { JwtHelper } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { data } from '../contacts/contact';
+// import { Contact } from '../contacts/contact';
 
 @Injectable()
 export class AuthenticationService {
@@ -39,7 +39,7 @@ export class AuthenticationService {
     }
     contact(payload) {
       // console.log(payload)
-        return this.http.post('http://localhost:3000/contact/save', payload)
+        return this.http.post('http://localhost:3000/contacts', payload)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let user = response.json();
@@ -48,15 +48,15 @@ export class AuthenticationService {
                 }
             });
     }
-
-    getContacts() : Observable<data[]> {
-        return this.http.get('http://localhost:3000/contact/getContacts')
-        // ...and calling .json() on the response to return data
-              // ...and calling .json() on the response to return data
-          .map((res:Response) => res.json())
-          //...errors if any
-          .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
-    }
+    //
+    // getContacts() : Observable<data[]> {
+    //     return this.http.get('http://localhost:3000/contact/getContacts')
+    //     // ...and calling .json() on the response to return data
+    //           // ...and calling .json() on the response to return data
+    //       .map((res:Response) => res.json())
+    //       //...errors if any
+    //       .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+    // }
     // logout a user
     logout() {
         // remove user from local storage to log user out

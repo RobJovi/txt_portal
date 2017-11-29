@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
+import { ContactService } from './contacts/contacts.service'
 
 import { RoutingModule} from './routing-module/routing-module.module';
 import { HashLocationStrategy, LocationStrategy} from "@angular/common";
@@ -37,10 +38,11 @@ import { ContactsComponent } from './contacts/contacts.component';
     Select2Module
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}, 
-    CookieService, 
-    AuthenticationService, 
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    CookieService,
+    AuthenticationService,
     AuthGuard,
+    ContactService,
     JwtModule,
     JwtHelperService,
     SubscriberService,
