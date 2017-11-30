@@ -42,13 +42,25 @@ export class AuthenticationService {
             });
     }
 
+    contact(payload) {
+        // console.log(payload)
+          return this.http.post('http://localhost:3000/cubeApp/saveApp', payload)
+              .map((response: Response) => {
+                  // login successful if there's a jwt token in the response
+                  const user = response.json();
+                  if (user && user.data) {
+                      console.log(user.data);
+                  }
+              });
+      }
+
     // grab TXTer from mongo collection
     getTemplateList(): Observable<TXTer[]> {
         const recipient = [];
         return this.http.get('http://7010fea8.ngrok.io/text/getTxter')
         // ...and calling .json() on the response to return data
         .map((res: Response) => res.json())
-        //...errors if any
+        // ...errors if any
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 

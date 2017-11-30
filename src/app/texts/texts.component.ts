@@ -25,6 +25,7 @@ export class TextsComponent implements OnInit {
   public numArray = [];
   txter;
 
+  
   isLoading = false;
   failure = false;
   constructor( private router: Router, private authService: AuthenticationService ) {
@@ -90,8 +91,18 @@ export class TextsComponent implements OnInit {
     const value = state.additional.number;
     console.log(state.additional.number);
     this.numArray.push(value);
+    // const elem = document.getElementById('contactSelect');
+    const unique = this.numArray.filter( function onlyUnique(elem, index, self) {
+      return index === self.indexOf(elem) ;
+    } );
     // const valueArray = [value].concat();
-    console.log(this.numArray);
+    console.log(unique);
+    const el = $('#message').val();
+    const french = unique.join(',');
+    // console.log(french);
+    $('#phone_number').val(french).text(french).data(french);
+    // const numberArray = [el];
+    // console.log(el);
 
     return jQuery('<span name="contact" id="contact"><b>' + state.text + '</b></span>');
   }
@@ -99,24 +110,20 @@ export class TextsComponent implements OnInit {
 
     // on send message
     onSubmit(payload) {
-      const elem = document.getElementById('contactSelect');
-      const el = $('#phone_number').val(elem.outerText);
-      const numberArray = [el];
-      console.log(numberArray);
-      // console.log('sending text');
-      // this.isLoading = true;
-      // // this.authService.message(this.array && elemTwo)
-      // this.authService.message(payload)
-      // .subscribe(
-      //     data => {
-      //         this.isLoading = false;
-      //         this.router.navigate(['/texts']);
-      //     },
-      //     error => {
-      //         this.failure = true;
-      //         this.isLoading = false;
-      //         console.log(error);
-      //     });
+      console.log('sending text');
+      this.isLoading = true;
+      // this.authService.message(this.array && elemTwo)
+      this.authService.message(payload)
+      .subscribe(
+          data => {
+              this.isLoading = false;
+              this.router.navigate(['/texts']);
+          },
+          error => {
+              this.failure = true;
+              this.isLoading = false;
+              console.log(error);
+          });
     }
 
   exit() {

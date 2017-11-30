@@ -49,26 +49,16 @@
   <form (ngSubmit)="onSubmit(data)" ng-form="textMessage">
     <div id="num-input">
       <select2 [data]="exampleData" [width]="500" [options]="options" [value]="value" id="contactSelect" name="contactSelect" ngDefaultControl>
-          <!--  -->
       </select2>
-      <br><br>
-      <!-- <input type="text" name="phone_number" id="phone_number" [(ngModel)]="data.phone_number" value="state.additional.number" required/> -->
-      <br/><br/>
-
-    </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <div id="actualForm">
-        <input type="text" name="phone_number" id="phone_number" [(ngModel)]="data.phone_number" placeholder="To..." required/>
-        <br>
-        <br>
-        <button class="button is-primary" [ngClass]="{'is-loading': isLoading}" submit>Send</button>
+      <input type="text" id="phone_number" name="phone_number" [(ngModel)]="data.phone_number" required/>
     </div>
 
+    <br><br><br><br><br><br><br><br>
     <div id="msg-input">
-      <input type="text" name="messageInput" id="messageInput" placeholder="Message..." />
+      <input type="text" name="message" id="message" [(ngModel)]="data.message" placeholder="Message..." required/>
     </div>
     <div id="msg-send">
-      <button class="button is-primary" [ngClass]="{'is-loading': isLoading}">Send</button>
+      <button class="button is-primary" [ngClass]="{'is-loading': isLoading}" submit>Send</button>
     </div>
   </form>
 </div>

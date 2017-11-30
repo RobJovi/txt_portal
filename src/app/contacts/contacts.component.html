@@ -1,3 +1,33 @@
-<p>
-  contacts works!
-</p>
+<br>
+<div id="main">
+  <h1>Add a Contact</h1>
+
+  <div ng-controller="ContactController">
+    <form (ngSubmit)="onSubmit(data)">
+      <div style="padding:10px;">
+        <label class="label">First Name</label>
+        <input class="input" type="text" name="first_name" #first_name="ngModel" [(ngModel)]="data.first_name" /><br />
+      </div>
+      <div style="padding:10px;">
+        <label class="label">Last Name</label>
+        <input class="input" type="text" name="last_name" #last_name="ngModel" [(ngModel)]="data.last_name" /><br />
+      </div>
+      <div style="padding:10px;">
+        <label class="label">Email</label>
+        <input class="input" type="text" name="email" #email="ngModel" [(ngModel)]="data.email" /><br />
+      </div>
+      <div style="padding:10px;">
+        <label class="label">Phone</label>
+        <input class="input" type="text" name="phone_number" #phone_number="ngModel" [(ngModel)]="data.phone_number" /><br />
+      </div>
+      <div style="padding:10px;">
+        <label class="label">School</label>
+        <input class="input" type="text" name="school" #school="ngModel" [(ngModel)]="data.school" /><br />
+      </div>
+      <div>
+        <button class="button is-primary" [ngClass]="{'is-loading': isLoading}" submit>Submit</button>
+      </div>
+    </form>
+  </div>
+
+</div>
