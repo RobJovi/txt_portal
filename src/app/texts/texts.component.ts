@@ -23,6 +23,7 @@ export class TextsComponent implements OnInit {
   public options: Select2Options;
   private _selectedFields: Array<string> = [];
   public numArray = [];
+  public french;
   txter;
 
   
@@ -91,18 +92,12 @@ export class TextsComponent implements OnInit {
     const value = state.additional.number;
     console.log(state.additional.number);
     this.numArray.push(value);
-    // const elem = document.getElementById('contactSelect');
     const unique = this.numArray.filter( function onlyUnique(elem, index, self) {
       return index === self.indexOf(elem) ;
     } );
-    // const valueArray = [value].concat();
     console.log(unique);
-    const el = $('#message').val();
-    const french = unique.join(',');
-    // console.log(french);
-    $('#phone_number').val(french).text(french).data(french);
-    // const numberArray = [el];
-    // console.log(el);
+    this.french = unique.join(',');
+    $('#phone_number').val(this.french).text(this.french).data(this.french);
 
     return jQuery('<span name="contact" id="contact"><b>' + state.text + '</b></span>');
   }
